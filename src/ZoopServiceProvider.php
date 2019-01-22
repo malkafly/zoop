@@ -30,7 +30,7 @@ class ZoopServiceProvider extends ServiceProvider {
 
         $this->mergeConfig();
 
-        $service = ZoopBase::getSingleton($this->app['config']->get('zoopconfig', []));
+        $service = ZoopBase::getSingleton($this->app['config']->get('zoop', []));
 
         $this->app->singleton('ZoopBankAccounts', function () use ($service) {
             return new ZoopBankAccounts(APIResource::getSingleton($service));
@@ -86,7 +86,7 @@ class ZoopServiceProvider extends ServiceProvider {
     private function mergeConfig()
     {
         $path = $this->getConfigPath();
-        $this->mergeConfigFrom($path, 'zoopconfig');
+        $this->mergeConfigFrom($path, 'zoop');
     }
 
     /**
